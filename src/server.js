@@ -13,8 +13,16 @@ const init = async () => {
 	server.route({
 		method: 'POST',
 		path: '/',
-		handler: (request) => {
-			return Solver.solve(request.payload.board);
+		handler: (request, h) => {
+			try {
+				return Solver.solve(request.payload.board);
+			}
+			catch (err) {
+				if (err.message == 'Impossible Board') {
+					return h.response('The board you sent has no solution').code(406);
+				}
+				return;
+			}
 		},
 		options: {
 			validate: {
