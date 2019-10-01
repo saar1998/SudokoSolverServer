@@ -21,7 +21,7 @@ const init = async () => {
 				if (err.message == 'Impossible Board') {
 					return h.response('The board you sent has no solution').code(406);
 				}
-				return;
+				return h.response('The board you sent is not valid').code(406);
 			}
 		},
 		options: {
