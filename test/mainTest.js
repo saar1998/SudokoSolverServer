@@ -43,6 +43,15 @@ describe('main tests', () => {
 		Expect(res.statusCode).to.eql(406);
 		Expect(res.payload).to.eql('The board you sent has no solution');
 	});
+
+	it('should return error message when provided with invalid board', async () => {
+		const request = JSON.parse(JSON.stringify(internals.requestObject));
+		request.payload = testData.invalidBoard;
+		const res = await this.server.inject(request);
+
+		Expect(res.statusCode).to.eql(406);
+		Expect(res.payload).to.eql('The board you sent is not valid');
+	});
 });
 
 const internals = {};
