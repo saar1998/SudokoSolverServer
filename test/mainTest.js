@@ -28,13 +28,6 @@ describe('main tests', () => {
 		Expect(res.statusCode).to.eql(400);
 	});
 
-	it('should return status code 400 if no payload doesnt containt board property', async () => {
-		const request = JSON.parse(JSON.stringify(internals.requestObject));
-		request.payload = { id: 3 };
-		const res = await this.server.inject(request);
-		Expect(res.statusCode).to.eql(400);
-	});
-
 	it('should return error message when provided with unsolvable board', async () => {
 		const request = JSON.parse(JSON.stringify(internals.requestObject));
 		request.payload = testData.unsolveableBoard;

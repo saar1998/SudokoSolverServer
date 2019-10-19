@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@hapi/hapi": "18.4.0",
-    "@hapi/joi" : "16.1.4",
-    "sudokoSolver": "https://github.com/saar1998/Sudoko-Brute-Force-Solver.git"
+    "sudokoSolver": "git+https://github.com/saar1998/Sudoko-Brute-Force-Solver.git"
   }
 }

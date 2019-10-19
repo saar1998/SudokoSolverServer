@@ -1,34 +1,36 @@
 const Hapi = require('@hapi/hapi'),
-	Solver = require('sudoko-solver'),
-	Joi = require('@hapi/joi');
+	Solver = require('sudokoSolver');
 
 const Config = require('../config');
 
 const init = async () => {
 	const server = Hapi.Server({
 		port: Config.port,
-		host: Config.host
+		host: Config.host,
+		routes: {
+			cors: true
+		}
 	});
 
 	server.route({
 		method: 'POST',
 		path: '/',
 		handler: (request, h) => {
+			let payload = request.payload;
+			if (!payload) {
+				return h.response().code(400);
+			}
+			if (typeof (payload) === 'string') {
+				payload = JSON.parse(payload);
+			}
 			try {
-				return Solver.solve(request.payload.board);
+				return h.response(JSON.stringify(Solver.solve(payload.board))).code(200);
 			}
 			catch (err) {
 				if (err.message == 'Impossible Board') {
 					return h.response('The board you sent has no solution').code(406);
 				}
 				return h.response('The board you sent is not valid').code(406);
-			}
-		},
-		options: {
-			validate: {
-				payload: Joi.object({
-					board: Joi.required()
-				})
 			}
 		}
 	});
