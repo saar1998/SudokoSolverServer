@@ -21,7 +21,7 @@
     "chai": "4.2.0"
   },
   "dependencies": {
-    "@hapi/hapi": "18.4.0",
+    "@hapi/hapi": "19.1.1",
     "sudokoSolver": "git+https://github.com/saar1998/Sudoko-Brute-Force-Solver.git"
   }
 }
