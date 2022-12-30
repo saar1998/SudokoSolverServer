@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/saar1998/SudokoSolverServer#readme",
   "devDependencies": {
-    "mocha": "6.2.1",
+    "mocha": "10.2.0",
     "chai": "4.2.0"
   },
   "dependencies": {
